@@ -10,6 +10,7 @@ def main():
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     subparsers.add_parser("list", help="列出所有用户进程")
+    subparsers.add_parser("ls", help="列出 node/python/java/go 用户进程")
     subparsers.add_parser("ports", help="列出所有监听端口")
 
     kill_parser = subparsers.add_parser("kill", help="杀死进程")
@@ -22,6 +23,7 @@ def main():
 
     dispatch = {
         "list": lambda: core.list_processes(),
+        "ls": lambda: core.list_dev_processes(),
         "ports": lambda: core.list_ports(),
         "kill": lambda: core.kill_target(args.target),
         "search": lambda: core.search(args.keyword),
